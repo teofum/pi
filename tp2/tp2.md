@@ -155,3 +155,22 @@ Salida:
 185.65
       90
 ```
+
+# 11.
+
+Ver `tp2_11.c`
+
+Salida:
+
+```
+❯ ./out/tp2_11 < tp2/tp2_11_in_1.txt
+B
+
+❯ ./out/tp2_11 < tp2/tp2_11_in_2.txt
+A
+
+❯ ./out/tp2_11 < tp2/tp2_11_in_3.txt
+A
+```
+
+El programa sólo compara los primeros dos caracteres, entonces en el primer caso ignora `CD`, en el segundo y tercero ignora `B` y compara `A` con `\n` y `\t` respectivamente, ambos son < `A`.
