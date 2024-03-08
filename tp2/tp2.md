@@ -174,3 +174,114 @@ A
 ```
 
 El programa sólo compara los primeros dos caracteres, entonces en el primer caso ignora `CD`, en el segundo y tercero ignora `B` y compara `A` con `\n` y `\t` respectivamente, ambos son < `A`.
+
+# 17.
+
+```c
+int main(void) {
+  printf("%x\n", "3" + "4");  // No compila
+  printf("%x\n", '3' + '4');  // 'g' = 0x67 ('3' = 0x33 + '4' = 0x34)
+  printf("%x\n", 3 + 4);      // 7
+  printf("%x\n", '3' + 4);    // '7' = 0x37 ('3' = 0x33 + 4)
+  printf("%x\n", 3 + '4');    // '7' = 0x37 ('4' = 0x34 + 3)
+  printf("%x\n", "3" + '4');  // 0xXXXXXXXX (*)
+  printf("%x\n", "3" + 4);    // 0xXXXXXXXX (*)
+
+  return 0;
+}
+```
+
+Qué ocurre en los últimos dos casos? Estamos sumando un número (`'4' = 0x34` o `4 = 0x04`) a un dato de tipo `char*` (puntero a un `char`, que es como C representa un string).
+
+Este `char*` contiene una dirección de memoria donde comienza el string `"3"`, que es distinta en cada ejecución. Por lo tanto, vemos un valor aleatorio.
+
+Una observación interesante: a pesar de que `"3"` está definido dos veces, gcc es lo suficientemente "inteligente" para darse cuenta que es la misma constante, y ubicarla en un único lugar en el ejecutable. Esto causa que la dirección de memoria sea la misma, como se ve en esta salida particular:
+
+```
+f67fdc
+f67fac
+```
+
+En este caso tenemos:
+
+```c
+"3" + '4' = "3" + 0x34 = 0x00f67fdc
+"3" +  4  = "3" + 0x04 = 0x00f67fac
+```
+
+Observemos que `'4' = 0x34 = 4 + 0x30`, y efectivamente,
+
+```c
+0x00f67fdc = 0x00f67fac + 0x30
+```
+
+Luego, podemos calcular el lugar donde cayó `"3"`:
+
+```c
+"3" = 0x00f67fac - 0x04 = 0x00f67fa8
+```
+
+# 18.
+
+### a.
+
+Falso. Sólo comienza en una línea nueva si ponemos `\n` al principio.
+
+### b.
+
+Verdadero. Usar `%` con floats no compila.
+
+### c.
+
+Verdadero, aunque hay lugares donde una variable no hace nada (por ejemplo, después del `return`).
+
+### d.
+
+Falso. Un `printf` puede contener varios `\n` dentro.
+
+# 19.
+
+```c
+int c1 = getchar();
+int c2 = getchar();
+c1 > c2 ? printf("%c es mayor\n", c1) : printf("%c es mayor\n", c2);
+```
+
+En esta versión, el segundo `printf` es redundante. La línea queda demasiado larga y es difícil de leer.
+
+Esta versión sería apropiada si los mensajes fuesen distintos, pero incluso en ese caso es preferible usar un `if` para mejorar la legibilidad (en general, es mejor evitar el operador condicional excepto en casos muy breves).
+
+```c
+int c1, c2;
+printf("%c es mayor", (c1 = getchar()) > (c2 = getchar()) ? c1 : c2);
+```
+
+Esta versión es demasiado compacta y difícil de leer.
+
+```c
+int c1 = getchar();
+int c2 = getchar();
+printf("%c es mayor\n", c1 > c2 ? c1 : c2);
+```
+
+Esta es la mejor versión, alcanza un buen punto medio entre concisa y legible.
+
+# 21
+
+### a/b.
+
+```
+c=2147483647   d=-2   e=-2147483648
+```
+
+### c.
+
+Se producen errores en runtime, el sanitizer indica que `int` no puede representar los valores de `d` y `e`.
+
+# 22
+
+`EOF` tiene valor `-1`. El tipo `char` no tiene default, y depende de la arquitectura y SO si es signed o unsigned.
+
+Si es unsigned, `c` nunca va a tener un valor negativo y el programa funciona correctamente.
+
+Si es signed, `getchar()` puede leer `255 = -1` y asumir que es `EOF`, terminando antes de tiempo.
