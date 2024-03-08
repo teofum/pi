@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "my_getnum.h": "c"
   }
 }
