@@ -1,9 +1,6 @@
 #include <stdio.h>
 
 #define TAB_SIZE 8
-#define LINE_LENGTH 256 // Max input line length
-// In this case, we don't need to define an output length because our output
-// will always have less characters than the input
 
 // Read a line from stdin and print it back to stdout
 // with spaces changed to tabs+spaces
@@ -13,8 +10,8 @@ int entab_line() {
   int cursor = 0;
   int spaces = 0;
 
-  // Read characters into c until max input length is reached or EOF
-  for (i_in = 0; i_in < LINE_LENGTH && (c = getchar()) != EOF; i_in++) {
+  // Read characters into c until EOF
+  while ((c = getchar()) != EOF) {
     if (c == ' ') {
       // If we find a space character, count it
       spaces++;
