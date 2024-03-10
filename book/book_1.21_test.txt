@@ -1,0 +1,4 @@
+hello   world   these       are     some words
+hello  world there should be no tab here
+a	b	c	d	e	f
+a       b       c                 e     f
