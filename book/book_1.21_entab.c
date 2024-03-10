@@ -6,7 +6,7 @@
 // with spaces changed to tabs+spaces
 // Returns 1 if EOF, 0 otherwise
 int entab_line() {
-  int c, i_in;
+  int c;
   int cursor = 0;
   int spaces = 0;
 

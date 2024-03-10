@@ -1,0 +1,4 @@
+hello world! this is a very long line of text made up of many words and should wrap right about there after the word "should".
+this is another line of text that's very long and ends with averylongwordwithnospacesinitthatshouldwrap.
+thisisallasingleextremelylongwordover80characterstheprogramshouldbeabletohandlebycuttingatthe80charmark
+this is an extremely long line that should wrap into more than two lines, i don't know what to type here anymore so i will repeat the same text this is an extremely long line that should wrap into more than two lines, i don't know what to type here anymore so i will repeat the same text this is an extremely long line that should wrap into more than two lines, i don't know what to type here anymore so i will repeat the same text

@@ -7,7 +7,6 @@
 // Returns 1 if EOF, 0 otherwise
 int entab_line() {
   int c;
-  int i_in = 0;
   int cursor = 0;
 
   // Read characters into c until EOF
