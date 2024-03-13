@@ -5,7 +5,7 @@
 #include "my_getnum.h"
 
 // Checks the buffer to ensure there is only whitespace after parsed value
-static int check_buffer() {
+static int check_buffer(void) {
   int c, flag = 1;
   while ((c = getchar()) != '\n') {
     if (!isspace(c)) {
