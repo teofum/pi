@@ -8,7 +8,7 @@ int main(void) {
     side = get_int("Enter square size: ");
   } while (side < 0);
 
-#ifdef A
+#ifdef A // Compile with flag -DA to use this version
 
   printf("Solution A, nested loops:\n");
   for (int i = 0; i < side; i++) {

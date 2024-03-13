@@ -237,3 +237,7 @@ while ((c = getchar()) != EOF) {
 
 printf ("El mayor es %c\n", mayor);
 ```
+
+# 17.
+
+Eventualmente va a hacer overflow, hay infinitos múltiplos de 10.

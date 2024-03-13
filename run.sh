@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cmd=${4:-gcc} # Use clang (aliased) on mac
-#cmd=${4:-$CC} # Use gcc on mac
+#cmd=${4:-$CC} # Use gcc on mac (needs envvar set in .zshrc)
 
 src=./$1/$1_$2.c
 
