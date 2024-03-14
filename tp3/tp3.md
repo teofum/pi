@@ -185,11 +185,11 @@ Imprime la suma de todos los elementos de una lista de `n`, dividido por el últ
 
 # 8.
 
-Ver `book/book_1.3.c`, `book/book_1.4.c`, `book/book_2.1.c`, `book/book_2.2.c`.
+Ver `book/book_1.3.c`, `book/book_1.4.c`.
 
 # 9.
 
-Ver `book/book_1.8.c`, `book/book_1.11.c`, `book/book_1.12.c`.
+Ver `book/book_1.8.c`, `book/book_1.12.c`.
 
 # 10.
 
