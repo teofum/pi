@@ -253,17 +253,3 @@ Solución: ver `tp4_14a.c`, `tp4_14b.c`, `tp4_14.h`.
 Hay dos funciones definidas con el mismo nombre.
 
 Solución: ver `tp4_15a.c`, `tp4_15b.c`, headers correspondientes.
-
-# 16.
-
-```c
-#define DIVISOR(a, b) ((a) % (b) == 0)
-```
-
-# 17.
-
-```c
-#define ABS(a) (((a) > 0) ? (a) : -(a))
-#define MINUTES(h, m) ((h) * 60 + (m))
-#define ELAPSED(h1, m1, h2, m2) ABS(MINUTES(h1, m1) - MINUTES(h2, m2))
-```
