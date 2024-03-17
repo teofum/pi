@@ -212,3 +212,58 @@ int llegaTemprano(const int hora, const int minutos) {
   return (hora < ENT_HORA || (hora == ENT_HORA && minutos <= ENT_MINUTOS));
 }
 ```
+
+# 10.
+
+- `aux` no está inicializada y contiente basura.
+- La función debe retornar el valor más chico `b`, no el mayor `a` (euclides indica `(a : b) = b si b div a; sino (b : a % b)`).
+- Rompe si a < b, se soluciona swapeando las variables.
+
+Solución: ver `tp4_10.c`.
+
+# 11.
+
+```c
+int max(int a, int b, int c) {
+  return (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);
+}
+```
+
+# 12.
+
+En ambos casos no compila; la función `neg` no está declarada en el primer archivo.
+
+# 13.
+
+- Falta incluir la lib `getnum`.
+- Las funciones `f1` y `f2` no están declaradas cuando se usan.
+
+Solución: ver `tp4_13a.c`, `tp4_13b.c`, `tp4_13.h`.
+
+# 14.
+
+- Falta incluir la lib `getnum`.
+- La función `f2` no está declarada cuando se usa.
+- La función `funAuxiliar` está definida dos veces, una por cada archivo fuente.
+
+Solución: ver `tp4_14a.c`, `tp4_14b.c`, `tp4_14.h`.
+
+# 15.
+
+Hay dos funciones definidas con el mismo nombre.
+
+Solución: ver `tp4_15a.c`, `tp4_15b.c`, headers correspondientes.
+
+# 16.
+
+```c
+#define DIVISOR(a, b) ((a) % (b) == 0)
+```
+
+# 17.
+
+```c
+#define ABS(a) (((a) > 0) ? (a) : -(a))
+#define MINUTES(h, m) ((h) * 60 + (m))
+#define ELAPSED(h1, m1, h2, m2) ABS(MINUTES(h1, m1) - MINUTES(h2, m2))
+```
