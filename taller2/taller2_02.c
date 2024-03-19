@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../lib/my_getnum.h"
+#include "my_getnum.h"
 
 #define abs(x) ((x) < 0 ? -(x) : (x))
 

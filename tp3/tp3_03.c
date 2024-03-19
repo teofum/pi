@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../lib/my_getnum.h"
+#include "my_getnum.h"
 
 #define BASE_WAGE 300
 #define SALES_THRESHOLD_1 1000

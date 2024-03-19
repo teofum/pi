@@ -1,4 +1,4 @@
-#include "../lib/my_getnum.h" // Redundant, only so my run script autodetects lib use
+#include "my_getnum.h" // Redundant, only so my run script autodetects lib use
 #include "tp4_13.h"
 
 int main(void) {

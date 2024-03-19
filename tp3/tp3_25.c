@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../lib/my_getnum.h"
+#include "my_getnum.h"
 
 #define LSB 0x00000001
 #define MSB 0x80000000

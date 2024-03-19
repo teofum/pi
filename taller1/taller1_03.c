@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../lib/my_getnum.h"
+#include "my_getnum.h"
 
 int main() {
   int n = get_int("Enter an integer: ");

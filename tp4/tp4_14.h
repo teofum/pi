@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "../lib/my_getnum.h"
+#include "my_getnum.h"
 
 float f1(float);
 float f2(float);

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../lib/my_getnum.h"
+#include "my_getnum.h"
 #include "tp4_15a.h"
 #include "tp4_15b.h"
 

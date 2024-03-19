@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../lib/my_getnum.h"
+#include "my_getnum.h"
 
 #define SECONDS_PER_MINUTE 60
 #define MINUTES_PER_HOUR 60
