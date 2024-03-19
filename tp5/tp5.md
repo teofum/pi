@@ -52,3 +52,26 @@ Salida:
 1.500000  1.500000   2.000000   1.000000
 2.250000  1.224745
 ```
+
+# 04.
+
+```c
+int rand_in_range(int min, int max) { return rand() % (max + 1 - min) + min; }
+```
+
+# 05.
+
+```c
+double power(double base, double exp) {
+  if (base == 0) return 0;
+  if (exp == 0) return 1;
+  double res = 1;
+  if (exp > 0) {
+    for (int i = 0; i < exp; i++) res *= base;
+  } else {
+    for (int i = 0; i < -exp; i++) res /= base;
+  }
+
+  return res;
+}
+```
