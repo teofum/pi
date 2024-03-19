@@ -1,4 +1,4 @@
-# 1.
+# 01.
 
 ### a.
 
@@ -37,16 +37,16 @@ No compila: el parámetro `z` de `DIVISION` debe ser un **lvalue** pues se le as
 - `y = 3`.
 - `z = 5`.
 
-# 2.
+# 02.
 
 - En c, la versión correcta de la macro `CUBO` es la de d.
 - En e, la macro `DIVISION` está curseadísima y no hay arreglo que valga.
 
-# 4.
+# 04.
 
 Ver `book/book_4.14.c`.
 
-# 5.
+# 05.
 
 ```c
 #define MAX2(x, y, out) (out = ((x) > (y)) ? (x) : (y))
@@ -60,7 +60,7 @@ Obesrvación: este estilo de macros con un parámetro de salida en general son m
 int max = MAX2_BETTER(x, y);
 ```
 
-# 6.
+# 06.
 
 ```c
 #define MAX3(x, y, z, out) MAX2(x, y, out); MAX2(out, z, out)
@@ -79,13 +79,13 @@ Observación: con la mejor versión de la macro anterior de puede hacer una mejo
 #define MAX3_BETTER(x, y, z) MAX2_BETTER(MAX2_BETTER(x, y), z)
 ```
 
-# 7.
+# 07.
 
 ```c
 #define isdigit(c) (c >= '0' && c <= '9')
 ```
 
-# 8.
+# 08.
 
 ### a.
 
@@ -190,7 +190,7 @@ El tercer `putchar` está recibiendo `"\n"`, que es de tipo `const char*`.
 
 Solución: cambiar la línea por `putchar('\n')`.
 
-# 9.
+# 09.
 
 Problema: al testear hora y minutos por separado, no considera el caso que la hora sea menor y el minuto mayor. Por ejemplo:
 

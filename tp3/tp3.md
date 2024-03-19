@@ -1,4 +1,4 @@
-# 4.
+# 04.
 
 ### a.
 
@@ -69,7 +69,7 @@ if (x == 1) {
 }
 ```
 
-# 6.
+# 06.
 
 ### a.
 
@@ -179,15 +179,15 @@ int main(void) {
 }
 ```
 
-# 7.
+# 07.
 
 Imprime la suma de todos los elementos de una lista de `n`, dividido por el último elemento de la lista.
 
-# 8.
+# 08.
 
 Ver `book/book_1.3.c`, `book/book_1.4.c`.
 
-# 9.
+# 09.
 
 Ver `book/book_1.8.c`, `book/book_1.12.c`.
 
