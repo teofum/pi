@@ -13,7 +13,7 @@
 int main(void) {
   double sales = -1, commission = 0;
   do {
-    sales = get_int("Enter weekly sales amount: ");
+    sales = get_double("Enter weekly sales amount: ");
   } while (sales < 0);
 
   if (sales > SALES_THRESHOLD_3)
