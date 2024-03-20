@@ -11,7 +11,7 @@
 #define SALES_COMMISSION_3 0.09
 
 int main(void) {
-  int sales = -1, commission = 0;
+  double sales = -1, commission = 0;
   do {
     sales = get_int("Enter weekly sales amount: ");
   } while (sales < 0);
