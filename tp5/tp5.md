@@ -53,25 +53,18 @@ Salida:
 2.250000  1.224745
 ```
 
-# 04.
+# 13.
 
-```c
-int rand_in_range(int min, int max) { return rand() % (max + 1 - min) + min; }
+### a.
+
+Incluir las declaraciones de funciones necesarias en `main.c`.
+
+### b.
+
+Ninguno, no se usa `#include` con archivos fuente (aunque funciona, y el resultado es copiar todo el contenido de `func.c` dentro de `main.c`).
+
+### c.
+
 ```
-
-# 05.
-
-```c
-double power(double base, double exp) {
-  if (base == 0) return 0;
-  if (exp == 0) return 1;
-  double res = 1;
-  if (exp > 0) {
-    for (int i = 0; i < exp; i++) res *= base;
-  } else {
-    for (int i = 0; i < -exp; i++) res /= base;
-  }
-
-  return res;
-}
+gcc main.c func.c <...args>
 ```
