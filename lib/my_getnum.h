@@ -1,7 +1,10 @@
-#include <stdarg.h>
-
 #ifndef _getnum_h
 #define _getnum_h
+
+#include <ctype.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
 
 int get_int(const char prompt[], ...);
 long get_long(const char prompt[], ...);

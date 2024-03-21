@@ -6,13 +6,19 @@ cmd=${4:-gcc} # Use clang (aliased) on mac
 src=./$1/$1_$2.c
 args="$3 -I ./lib -std=c99 -pedantic -Wall -lm -o out/$1_$2"
 
-# Auto-detect use of my_getnum lib and add it to compile command
+# Auto-detect use of libs and add it to compile command
 cat $src | grep my_getnum > /dev/null
 if [[ $? ]]; then
-  $cmd $src lib/my_getnum.c $args
-else
-  $cmd $src $args
+  src="$src lib/my_getnum.c"
 fi
+
+cat $src | grep random > /dev/null
+if [[ $? ]]; then
+  src="$src lib/random.c"
+fi
+
+# Compile
+$cmd $src $args
 
 # Run the output executable
 ./out/$1_$2

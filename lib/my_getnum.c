@@ -1,7 +1,3 @@
-#include <ctype.h>
-#include <stdio.h>
-#include <string.h>
-
 #include "my_getnum.h"
 
 // Checks the buffer to ensure there is only whitespace after parsed value
