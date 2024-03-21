@@ -7,15 +7,13 @@ src=./$1/$1_$2.c
 args="$3 -I ./lib -std=c99 -pedantic -Wall -lm -o out/$1_$2"
 
 # Auto-detect use of libs and add it to compile command
-cat $src | grep my_getnum > /dev/null
-if [[ $? ]]; then
-  src="$src lib/my_getnum.c"
-fi
-
-cat $src | grep random > /dev/null
-if [[ $? ]]; then
-  src="$src lib/random.c"
-fi
+for lib in lib/*.h; do
+  lib_name=$(echo $lib | sed -E 's#lib/([a-zA-Z0-9_]+)\.h#\1#')
+  cat $src | grep "$lib_name.h" > /dev/null
+  if [[ $? = 0 ]]; then
+    src="$src lib/$lib_name.c"
+  fi
+done
 
 # Compile
 $cmd $src $args
