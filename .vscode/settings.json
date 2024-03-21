@@ -2,7 +2,8 @@
   "files.associations": {
     "stdio.h": "c",
     "my_getnum.h": "c",
-    "math.h": "c"
+    "math.h": "c",
+    "utils.h": "c"
   },
   "C_Cpp.default.includePath": ["lib/"]
 }
