@@ -13,8 +13,10 @@ int main(void) {
 }
 
 int isprime(int n) {
-  int sqrt_n = (int)(sqrt(n) + 0.5);
-  for (int i = 2; i <= sqrt_n; i++)
+  if (n < 2)
+    return 0;
+
+  for (int i = 2; i * i <= n; i++)
     if (n % i == 0)
       return 0;
 
