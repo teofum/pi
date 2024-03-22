@@ -2,6 +2,7 @@
 
 #include "my_getnum.h"
 
+int friend_of(int a, int b);
 int friends(int a, int b);
 
 int main(void) {
@@ -12,7 +13,7 @@ int main(void) {
   return 0;
 }
 
-int friends(int a, int b) {
+int friend_of(int a, int b) {
   // find sum of dividers of a
   int div_sum = 1; // 1 always divides
   for (int i = 2; i * i <= a; i++)
@@ -21,15 +22,7 @@ int friends(int a, int b) {
       div_sum += (a / i);
     }
 
-  if (div_sum != b)
-    return 0;
-
-  div_sum = 1; // 1 always divides
-  for (int i = 2; i * i <= b; i++)
-    if (b % i == 0) {
-      div_sum += i;
-      div_sum += (b / i);
-    }
-
-  return div_sum == a;
+  return div_sum == b;
 }
+
+int friends(int a, int b) { return friend_of(a, b) && friend_of(b, a); }
