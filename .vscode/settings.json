@@ -6,7 +6,8 @@
     "utils.h": "c",
     "queue": "c",
     "stack": "c",
-    "random.h": "c"
+    "random.h": "c",
+    "string.h": "c"
   },
   "C_Cpp.default.includePath": ["lib/"]
 }
