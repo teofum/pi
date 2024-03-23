@@ -3,7 +3,9 @@
     "stdio.h": "c",
     "my_getnum.h": "c",
     "math.h": "c",
-    "utils.h": "c"
+    "utils.h": "c",
+    "queue": "c",
+    "stack": "c"
   },
   "C_Cpp.default.includePath": ["lib/"]
 }

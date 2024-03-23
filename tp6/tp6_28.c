@@ -10,6 +10,8 @@
 #define isvowel(c)                                                             \
   ((c) == 'a' || (c) == 'e' || (c) == 'i' || (c) == 'o' || (c) == 'u')
 
+void remove_char(char *s, int idx);
+int vowel_idx(char c);
 int remove_vowels(char *s, int m[][VOWEL_COUNT], unsigned int n);
 
 int main(void) {
@@ -76,11 +78,56 @@ int main(void) {
   return 0;
 }
 
-int remove_vowels(char *s, int m[][VOWEL_COUNT], unsigned int n) {
-  int cursor = 0, input_cursor = 0, removed[VOWEL_COUNT] = {0}, m_full = 0;
+void remove_char(char *s, int idx) {
+  int cursor = idx + 1;
   char c;
-  while ((c = getchar) != '\0' && !m_full) {
+  do {
+    s[cursor - 1] = c = s[cursor];
+    cursor++;
+  } while (c != '\0');
+}
+
+int vowel_idx(char c) {
+  switch (c) {
+  case 'a':
+    return 0;
+  case 'e':
+    return 1;
+  case 'i':
+    return 2;
+  case 'o':
+    return 3;
+  case 'u':
+    return 4;
+  default:
+    return -1;
+  }
+}
+
+int remove_vowels(char *s, int m[][VOWEL_COUNT], unsigned int n) {
+  int cursor = 0, cur_in = 0, removed[VOWEL_COUNT] = {0}, m_full = 0;
+  char c;
+  while ((c = s[cursor]) != '\0') {
+    if (isvowel(tolower(c))) {
+      int vi = vowel_idx(c);
+      if (removed[vi] == n - 1) { // matrix is full!
+        m_full = 1;
+        cursor++;
+      } else {
+        remove_char(s, cursor);
+        m[removed[vi]++][vi] = cur_in;
+      }
+    } else {
+      cursor++;
+    }
+
+    cur_in++;
   }
 
+  // terminate matrix with -1
+  for (int i = 0; i < VOWEL_COUNT; i++)
+    m[removed[i]][i] = -1;
+
+  printf("\"%s\"\n", s);
   return m_full ? ERROR : SUCCESS;
 }
