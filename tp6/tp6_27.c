@@ -27,34 +27,10 @@ int main(void) {
 
 // modified version of collapse_whitespace from 6.24
 void collapse_nulls(char *str) {
-  int nul_start = -1, nul_span = -1;
-  char c;
-  for (int cursor = 0; cursor < CHARS; cursor++) {
-    c = str[cursor];
-
-    if (c == '\0') {
-      if (nul_start == -1) {
-        nul_start = cursor;
-        nul_span = 1;
-      } else {
-        nul_span++;
-      }
-    } else {
-      if (nul_span > 0) {
-        // end of a span of nulls
-        // shift everything right of the cursor nul_span spaces to the left
-        for (; cursor < CHARS; cursor++) {
-          c = str[cursor];
-          str[cursor - nul_span] = str[cursor];
-        }
-
-        // reset the cursor and span variables
-        cursor = nul_start;
-        c = str[cursor];
-      }
-      nul_start = -1;
-      nul_span = -1;
-    }
+  int j = 0;
+  for (int i = 0; i < CHARS; i++) {
+    if (str[i] != '\0')
+      str[j++] = str[i];
   }
 
   printf("\"%s\"\n", str);
