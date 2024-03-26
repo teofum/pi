@@ -33,11 +33,9 @@ int main(void) {
 int contains(const int v1[COLS], const int v2[COLS]) {
   for (int i = 0; i < COLS; i++) {
     int item = v1[i], in_v2 = 0;
-    for (int j = 0; j < COLS; j++) {
-      if (v2[j] == item) {
+    for (int j = 0; j < COLS && !in_v2; j++) {
+      if (v2[j] == item)
         in_v2 = 1;
-        break;
-      }
     }
     if (!in_v2)
       return 0;
@@ -45,31 +43,26 @@ int contains(const int v1[COLS], const int v2[COLS]) {
   return 1;
 }
 
+// Returns 1 if each row of m1 is contained in some row of m2, 0 otherwise
 // Same solution from 6.18, since it never assumed ordered rows to begin with
-int friendly_mat(const int m1[][COLS], uint r1, const int m2[][COLS], uint r2) {
-  int m1_friendly_m2 = 1;
+int friend_of(const int m1[][COLS], uint r1, const int m2[][COLS], uint r2) {
   for (int i = 0; i < r1; i++) {
-    int row_friendly = 0;
-    for (int j = 0; j < r2; j++) {
-      int cont = contains(&m1[i][0], &m2[j][0]);
-      row_friendly |= cont;
+    int row_in_v2 = 0;
+    for (int j = 0; j < r2 && !row_in_v2; j++) {
+      int cont = contains(m1[i], m2[j]);
+      row_in_v2 |= cont;
     }
 
-    m1_friendly_m2 &= row_friendly;
-  }
-  if (m1_friendly_m2)
-    return 1;
-
-  // If m1 is not friendly to m2 test the other way round
-  for (int i = 0; i < r2; i++) {
-    int row_friendly = 0;
-    for (int j = 0; j < r1; j++) {
-      int cont = contains(&m2[i][0], &m1[j][0]);
-      row_friendly |= cont;
-    }
-
-    if (!row_friendly)
+    if (!row_in_v2)
       return 0;
   }
-  return 2;
+  return 1;
+}
+
+// 1 if m1 is friend of m2, 2 if m2 is friend of m1, 0 otherwise
+int friendly_mat(const int m1[][COLS], uint r1, const int m2[][COLS], uint r2) {
+  if (friend_of(m1, r1, m2, r2))
+    return 1;
+
+  return friend_of(m2, r2, m1, r1) ? 2 : 0;
 }
