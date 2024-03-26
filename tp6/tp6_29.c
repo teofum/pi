@@ -42,24 +42,26 @@ int main(void) {
   return 0;
 }
 
-void remove_char(char *s, int idx) {
-  int cursor = idx + 1;
-  char c;
-  do {
-    s[cursor - 1] = c = s[cursor];
-    cursor++;
-  } while (c != '\0');
-}
-
 void delete_chars(char *s1, char *s2) {
-  int cursor = 0;
-  char c1, c2;
-  while ((c1 = s1[cursor]) != '\0' && (c2 = s2[cursor]) != '\0') {
-    if (c1 == c2) {
-      remove_char(s1, cursor);
-      remove_char(s2, cursor);
-    } else {
-      cursor++;
+  int i = 0, j = 0, end1 = 0, end2 = 0;
+  while (!end1 || !end2) {
+    if (end1) {
+      s2[j++] = s2[i];
+    } else if (end2) {
+      s1[j++] = s1[i];
+    } else if (s1[i] != s2[i]) {
+      s1[j] = s1[i];
+      s2[j++] = s2[i];
     }
+
+    if (!end1 && s1[i] == '\0') {
+      end1 = 1;
+      s1[j] = '\0';
+    }
+    if (!end2 && s2[i] == '\0') {
+      end2 = 1;
+      s2[j] = '\0';
+    }
+    i++;
   }
 }
