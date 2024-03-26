@@ -13,7 +13,7 @@ int main(void) {
     int last_digit = n % 2;
     binary += last_digit * power;
 
-    n /= 2;
+    n >> 1;
     power *= 10;
   }
 
