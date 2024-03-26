@@ -39,38 +39,13 @@ int main(void) {
 }
 
 void collapse_whitespace(char str[]) {
-  int cursor = 0, ws_start = -1, ws_span = -1;
+  int i = 0, j = 0;
   char c;
   do {
-    c = str[cursor];
+    c = str[i];
+    if (i == 0 || c != ' ' || str[i - 1] != ' ')
+      str[j++] = c;
 
-    if (c == ' ') {
-      if (ws_start == -1) {
-        ws_start = cursor;
-        ws_span = 1;
-      } else {
-        ws_span++;
-      }
-    } else {
-      if (ws_span > 1) {
-        // end of a span of more than one space
-        // shift everything right of the cursor (ws_span - 1) spaces to the left
-        do {
-          c = str[cursor];
-          str[cursor - ws_span + 1] = str[cursor];
-          cursor++;
-        } while (c != '\0');
-
-        // reset the cursor and span variables
-        cursor = ws_start + 1;
-        c = str[cursor];
-      }
-      ws_start = -1;
-      ws_span = -1;
-    }
-
-    cursor++;
+    i++;
   } while (c != '\0');
-
-  printf("\"%s\"\n", str);
 }
