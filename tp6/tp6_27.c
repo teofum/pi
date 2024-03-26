@@ -32,8 +32,6 @@ void collapse_nulls(char *str) {
     if (str[i] != '\0')
       str[j++] = str[i];
   }
-
-  printf("\"%s\"\n", str);
 }
 
 void analyze(const char *text, char *chars) {
