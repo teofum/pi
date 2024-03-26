@@ -5,6 +5,9 @@
 #define SIZE 9
 
 void clear(int v[]);
+int validate_row(char m[][SIZE], int i);
+int validate_col(char m[][SIZE], int j);
+int validate_block(char m[][SIZE], int ib, int jb);
 int sudoku_validate(char m[][SIZE]);
 
 int main(void) {
@@ -86,58 +89,77 @@ void clear(int v[]) {
     v[i] = 0;
 }
 
-int sudoku_validate(char m[][SIZE]) {
+// Validates a Sudoku row
+// Does bound-checks on the cell values, so this should be called first!
+int validate_row(char m[][SIZE], int i) {
   // We'll use this to check for repeats: when we find a cell with value N,
   // we'll check the Nth position, then increment it. If we find the Nth
   // position in the buffer is one, the value is repeated.
-  int validation_buffer[SIZE] = {0};
+  static int validation_buffer[SIZE] = {0};
+  clear(validation_buffer);
 
-  // Pass 1: validate rows
+  for (int j = 0; j < SIZE; j++) {
+    int val = m[i][j];
+    if (val < 1 || val > SIZE || validation_buffer[val - 1]++)
+      return 0;
+  }
+
+  return 1;
+}
+
+// Validates a Sudoku column
+// Doesn't do any bound-checks on the cell values.
+int validate_col(char m[][SIZE], int j) {
+  static int validation_buffer[SIZE] = {0};
+  clear(validation_buffer);
+
   for (int i = 0; i < SIZE; i++) {
-    clear(validation_buffer);
-    for (int j = 0; j < SIZE; j++) {
-      int val = m[i][j];
-      if (val < 1 || val > SIZE) {
-        printf("Value %d out of bounds at row %d, col %d\n", val, i, j);
-        return 0;
-      }
+    int val = m[i][j];
+    if (validation_buffer[val - 1]++)
+      return 0;
+  }
 
-      if (validation_buffer[val - 1]++) {
-        printf("Duplicate value %d in row %d\n", val, i);
+  return 1;
+}
+
+// Validates a Sudoku block (3x3 square)
+// Doesn't do any bound-checks on the cell values.
+int validate_block(char m[][SIZE], int ib, int jb) {
+  static int validation_buffer[SIZE] = {0};
+  clear(validation_buffer);
+
+  for (int i = 0; i < BLOCK_SIZE; i++) {
+    for (int j = 0; j < BLOCK_SIZE; j++) {
+      int val = m[ib + i][jb + j];
+      if (validation_buffer[val - 1]++)
         return 0;
-      }
     }
   }
+
+  return 1;
+}
+
+int sudoku_validate(char m[][SIZE]) {
+
+  // Pass 1: validate rows
+  for (int i = 0; i < SIZE; i++)
+    if (!validate_row(m, i))
+      return 0;
 
   // Since the first pass checks every cell, we don't need to bother with bounds
   // checks on subsequent passes: if any values were out of bounds, the function
   // will never reach this point.
 
   // Pass 2: validate columns
-  for (int j = 0; j < SIZE; j++) {
-    clear(validation_buffer);
-    for (int i = 0; i < SIZE; i++) {
-      int val = m[i][j];
-      if (validation_buffer[val - 1]++) {
-        printf("Duplicate value %d in column %d\n", val, i);
-        return 0;
-      }
-    }
-  }
+  for (int j = 0; j < SIZE; j++)
+    if (!validate_col(m, j))
+      return 0;
 
   // Pass 2: validate blocks
   for (int ib = 0; ib < SIZE; ib += BLOCK_SIZE) {
     for (int jb = 0; jb < SIZE; jb += BLOCK_SIZE) {
-      clear(validation_buffer);
-      for (int i = 0; i < BLOCK_SIZE; i++) {
-        for (int j = 0; j < BLOCK_SIZE; j++) {
-          int val = m[ib + i][jb + j];
-          if (validation_buffer[val - 1]++) {
-            printf("Duplicate value %d in block %d, %d\n", val, ib, jb);
-            return 0;
-          }
-        }
-      }
+      if (!validate_block(m, ib, jb))
+        return 0;
     }
   }
 
