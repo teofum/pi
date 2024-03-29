@@ -50,17 +50,18 @@ int main(void) {
   return 0;
 }
 
+int includes(const int vec[], int size, int item) {
+  for (int i = 0; i < size; i++)
+    if (vec[i] == item)
+      return 1;
+  return 0;
+}
+
 int dedupe(const int vec[], int size, int out[]) {
   int out_i = 0;
-  for (int i = 0; i < size; i++) {
-    int v = vec[i], dupe = 0;
-    for (int j = 0; j < i && !dupe; j++)
-      if (vec[j] == v)
-        dupe = 1;
-
-    if (!dupe)
-      out[out_i++] = v;
-  }
+  for (int i = 0; i < size; i++)
+    if (!includes(vec, out_i, vec[i]))
+      out[out_i++] = vec[i];
 
   return out_i;
 }
