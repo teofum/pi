@@ -25,7 +25,7 @@ int main(void) {
 void shuffle(int vec[], int size) {
   int j;
   for (int i = 0; i < size; i++) {
-    j = random_int(0, size);
+    j = random_int(0, size - 1);
     swap(&vec[i], &vec[j]);
   }
 }

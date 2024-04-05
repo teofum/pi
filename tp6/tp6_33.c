@@ -45,7 +45,7 @@ int main(void) {
 void shuffle(char *vec, int size) {
   int j;
   for (int i = 0; i < size; i++) {
-    j = random_int(0, size);
+    j = random_int(0, size - 1);
     char tmp = vec[i];
     vec[i] = vec[j];
     vec[j] = tmp;
