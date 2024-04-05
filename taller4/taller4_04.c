@@ -2,11 +2,6 @@
 
 typedef unsigned int uint;
 
-// TODO: array intersection
-
-// 1: assume unique values and non sorted
-// 2: assume unique values, sorted in ascending order
-
 uint intersection_unsorted(
     const int a[],
     uint sa,
@@ -45,6 +40,13 @@ int main(void) {
   return 0;
 }
 
+int includes(int v, int vec[], uint size) {
+  for (int i = 0; i < size; i++)
+    if (vec[i] == v)
+      return 1;
+  return 0;
+}
+
 uint intersection_unsorted(
     const int a[],
     uint sa,
@@ -53,15 +55,9 @@ uint intersection_unsorted(
     int intersect[]
 ) {
   int int_size = 0;
-  for (int i = 0; i < sa; i++) {
-    int found = 0;
-    for (int j = 0; j < sb && !found; j++) {
-      if (a[i] == b[j]) {
-        found = 1;
-        intersect[int_size++] = a[i];
-      }
-    }
-  }
+  for (int i = 0; i < sa; i++)
+    if (includes(a[i], b, sb))
+      intersect[int_size++] = a[i];
 
   return int_size;
 }
