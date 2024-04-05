@@ -8,7 +8,7 @@
 void seed_with_timestamp(void);
 
 // Returns a random double in range [0, 1)
-double random();
+double random_double(void);
 
 // Returns a random double in range [min, max)
 double random_range(double min, double max);
