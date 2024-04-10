@@ -20,6 +20,36 @@ int main(void) {
   puts("OK!");
 }
 
+void unpack_values(const unsigned char vec[], double values[], int size) {
+  for (int i = 0; i < size; i++) {
+    int vi = i / 2;
+    unsigned char mask = i % 2 ? 0x0f : 0xf0;
+    unsigned char shift = i % 2 ? 0 : 4;
+    values[i] = (double)((vec[vi] & mask) >> shift);
+  }
+}
+
+double average(const double values[], int size) {
+  double avg;
+  for (int i = 0; i < size; i++)
+    avg += values[i];
+  avg /= size;
+
+  return avg;
+}
+
+double variance(const double values[], int size, double avg) {
+  double var;
+  for (int i = 0; i < size; i++) {
+    double dev = values[i] - avg;
+    double dev_squared = dev * dev;
+    var += dev_squared;
+  }
+  var /= size;
+
+  return var;
+}
+
 // https://en.wikipedia.org/wiki/Standard_deviation
 double std_deviation(const unsigned char vec[], int size) {
   if (size == 0)
@@ -27,26 +57,13 @@ double std_deviation(const unsigned char vec[], int size) {
 
   // First, unpack the values into doubles and calculate the average
   double values[size];
-  double avg = 0.0;
 
-  for (int i = 0; i < size; i++) {
-    int vi = i / 2;
-    unsigned char mask = i % 2 ? 0x0f : 0xf0;
-    unsigned char shift = i % 2 ? 0 : 4;
-    values[i] = (double)((vec[vi] & mask) >> shift);
-    avg += values[i];
-  }
-  avg /= size;
+  unpack_values(vec, values, size);
+  double avg = average(values, size);
 
   // Then, calculate the variance
-  double variance = 0.0;
-  for (int i = 0; i < size; i++) {
-    double dev = values[i] - avg;
-    double dev_squared = dev * dev;
-    variance += dev_squared;
-  }
-  variance /= size;
+  double var = variance(values, size, avg);
 
   // Standard deviation is the square root of variance
-  return sqrt(variance);
+  return sqrt(var);
 }

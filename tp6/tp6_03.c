@@ -32,16 +32,14 @@ int main(void) {
 
 double max_diff(const double vec[]) {
   double max_d = 0.0;
-  double last = vec[0];
 
-  int i = 0;
-  while (vec[i] != 0.0) {
-    double d = fabs(vec[i] - last);
-    last = vec[i];
+  if (vec[0] == 0.0)
+    return 0.0;
+
+  for (int i = 1; vec[i] != 0.0; i++) {
+    double d = fabs(vec[i] - vec[i - 1]);
     if (d > max_d)
       max_d = d;
-
-    i++;
   }
 
   return max_d;
