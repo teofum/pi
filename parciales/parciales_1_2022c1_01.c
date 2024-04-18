@@ -1,10 +1,14 @@
-#include <math.h>
 #include <stdio.h>
 
 #define COLS 5
 
-void xor_sets(int m1[][COLS], int m2[][COLS], int m3[][COLS], int rows);
-void xor_set(int v1[COLS], int v2[COLS], int out[COLS]);
+void xor_sets(
+    const int m1[][COLS],
+    const int m2[][COLS],
+    int m3[][COLS],
+    int rows
+);
+void xor_set(const int v1[COLS], const int v2[COLS], int out[COLS]);
 
 void print_mat(int m[][COLS], int rows);
 
@@ -39,13 +43,18 @@ int main(void) {
   return 0;
 }
 
-void xor_sets(int m1[][COLS], int m2[][COLS], int m3[][COLS], int rows) {
+void xor_sets(
+    const int m1[][COLS],
+    const int m2[][COLS],
+    int m3[][COLS],
+    int rows
+) {
   for (int i = 0; i < rows; i++)
     xor_set(m1[i], m2[i], m3[i]);
 }
 
 // doesn't check for overflow!
-void xor_set(int v1[COLS], int v2[COLS], int out[COLS]) {
+void xor_set(const int v1[COLS], const int v2[COLS], int out[COLS]) {
   int i = 0, j = 0, k = 0;
 
   while (v1[i] != -1 || v2[j] != -1) {
