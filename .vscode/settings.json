@@ -7,7 +7,8 @@
     "queue": "c",
     "stack": "c",
     "random.h": "c",
-    "string.h": "c"
+    "string.h": "c",
+    "ctype.h": "c"
   },
   "C_Cpp.default.includePath": ["lib/"]
 }
