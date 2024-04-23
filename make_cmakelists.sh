@@ -1,6 +1,6 @@
 #!/bin/bash
 
-exclude_dirs=(".vscode" "cmake-build-debug" "lib" "out")
+exclude_dirs=(".vscode" "cmake-build-debug" "cmake-build-docker" "lib" "out")
 
 echo "# Auto generated CMakeLists.txt" > CMakeLists.txt
 

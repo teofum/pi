@@ -1,4 +1,4 @@
 .DS_Store
 CMakeLists.txt
 out/
-cmake-build-debug/
+cmake-build-*/

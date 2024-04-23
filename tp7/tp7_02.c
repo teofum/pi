@@ -18,8 +18,9 @@ int main(void) {
 }
 
 void read_radix(uint *in, uint *out) {
-  int n = 0;
   *in = *out = 0;
+
+  int n = 0;
   do {
     n = scanf("< %u > %u", in, out);
     flush_stdin();
@@ -29,8 +30,9 @@ void read_radix(uint *in, uint *out) {
 uint read_num(uint radix) {
   char buf[256];
   char fmt[10];
-  int n = 0;
   sprintf(fmt, "%%[0-%d]", radix - 1);
+
+  int n = 0;
   do {
     n = scanf(fmt, buf);
   } while (n != 1);

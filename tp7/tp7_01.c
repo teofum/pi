@@ -10,6 +10,6 @@ int main(void) {
   for (int i = 0; i < 10; i++)
     printf("%d\n", p[i]);
 
-  p = NULL;
+  free(p);
   return 0;
 }
