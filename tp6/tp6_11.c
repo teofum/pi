@@ -6,6 +6,7 @@
 #define MAX_COL 10
 
 void swap_rows(int m[][MAX_COL], int cols, int a, int b);
+
 void sort_by_column(int m[][MAX_COL], int rows, int cols, int sort_col);
 
 int vec_equals(const int v1[], const int v2[], int size) {
@@ -17,11 +18,17 @@ int vec_equals(const int v1[], const int v2[], int size) {
 
 int main(void) {
   int m[][MAX_COL] = {
-      {1, 2, 3, 4, 5}, {6, 2, 8, 9, 10}, {3, 5, 8, 2, 1}, {8, 7, 3, 6, 7}
+    {1, 2, 3, 4, 5},
+    {6, 2, 8, 9, 10},
+    {3, 5, 8, 2, 1},
+    {8, 7, 3, 6, 7}
   };
 
   int m2[][MAX_COL] = {
-      {1, 2, 3, 4, 5}, {6, 2, 8, 9, 10}, {3, 5, 8, 2, 1}, {8, 7, 3, 6, 7}
+    {1, 2, 3, 4, 5},
+    {6, 2, 8, 9, 10},
+    {3, 5, 8, 2, 1},
+    {8, 7, 3, 6, 7}
   };
 
   sort_by_column(m, 4, 5, 2);
@@ -47,7 +54,7 @@ int main(void) {
 
 void swap_rows(int m[][MAX_COL], int cols, int a, int b) {
   for (int j = 0; j < cols; j++)
-    swap(&m[a][j], &m[b][j]);
+    swap_int(&m[a][j], &m[b][j]);
 }
 
 // Stable selection sort

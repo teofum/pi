@@ -1,11 +1,20 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "utils.h"
 
-void swap(int *a, int *b) {
+void swap_int(int *a, int *b) {
   int tmp = *a;
   *a = *b;
   *b = tmp;
+}
+
+void swap(void *a, void *b, size_t el_size) {
+  void *tmp = malloc(el_size);
+  memcpy(tmp, a, el_size);
+  memcpy(a, b, el_size);
+  memcpy(b, tmp, el_size);
+  free(tmp);
 }
 
 // quicksort
@@ -42,6 +51,5 @@ void sort(int v[], int size) {
 
 void flush_stdin(void) {
   int c;
-  while ((c = getchar()) != EOF && c != '\n')
-    ;
+  while ((c = getchar()) != EOF && c != '\n');
 }

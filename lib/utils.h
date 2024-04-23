@@ -9,7 +9,10 @@ typedef unsigned int uint;
 typedef unsigned long ulong;
 
 // Swaps the values of two integers
-void swap(int *a, int *b);
+void swap_int(int *a, int *b);
+
+// Swaps anything
+void swap(void *a, void *b, size_t el_size);
 
 // Sort an integer array using quicksort
 void sort(int v[], int size);
