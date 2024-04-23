@@ -39,3 +39,9 @@ void sort(int v[], int size) {
   sort(v, l);
   sort(v + m, size - m);
 }
+
+void flush_stdin(void) {
+  int c;
+  while ((c = getchar()) != EOF && c != '\n')
+    ;
+}

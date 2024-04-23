@@ -1,15 +1,23 @@
 #!/bin/bash
 
-cmd=${4:-gcc} # Use clang (aliased) on mac
-#cmd=${4:-$CC} # Use gcc on mac (needs envvar set in .zshrc)
+cmd="gcc" # Use clang (aliased) on mac
+# cmd="$CC" # Use gcc on mac (needs envvar set in .zshrc)
 
 src=./$1/$1_$2.c
 args="-I ./lib -std=c99 -pedantic -Wall -lm -o out/$1_$2"
+runtime_args=""
 
-if [[ $3 == "san" ]]; then
-  args="$args -fsanitize=address -g"
+if [[ $3 == "--" ]]; then
+  runtime_args="$4"
 else
-  args="$args $3"
+  if [[ $3 == "san" ]]; then
+    args="$args -fsanitize=address -g"
+  else
+    args="$args $3"
+  fi
+  if [[ $4 == "--" ]]; then
+    runtime_args="$5"
+  fi
 fi
 
 # Auto-detect use of libs and add it to compile command
@@ -25,4 +33,4 @@ done
 $cmd $src $args
 
 # Run the output executable
-./out/$1_$2
+./out/$1_$2 $runtime_args
