@@ -10,7 +10,7 @@
 
 typedef char num_t[X];
 
-void shuffle(int vec[], int size);
+void shuffle_int(int vec[], int size);
 
 void gen_random_array(num_t vec);
 
@@ -52,7 +52,7 @@ int main(void) {
   return 0;
 }
 
-void shuffle(int vec[], int size) {
+void shuffle_int(int vec[], int size) {
   int j;
   for (int i = 0; i < size; i++) {
     j = random_int(0, size - 1);
@@ -62,7 +62,7 @@ void shuffle(int vec[], int size) {
 
 void gen_random_array(num_t vec) {
   int digits[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-  shuffle(digits, 10);
+  shuffle_int(digits, 10);
 
   for (int i = 0; i < X; i++) {
     vec[i] = (char) (digits[i] + '0');

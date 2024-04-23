@@ -3,7 +3,7 @@
 #include "random.h"
 #include "utils.h"
 
-void shuffle(int vec[], int size);
+void shuffle_int(int vec[], int size);
 
 void shuffle_terminated(int vec[]);
 
@@ -13,7 +13,7 @@ int main(void) {
   int arr[5] = {3, 5, 7, 9, 15};
   int arr_t[6] = {3, 5, 7, 9, 15, -1};
 
-  shuffle(arr, 5);
+  shuffle_int(arr, 5);
   shuffle_terminated(arr_t);
 
   printf("Shuffled (length): ");
@@ -29,7 +29,7 @@ int main(void) {
   return 0;
 }
 
-void shuffle(int vec[], int size) {
+void shuffle_int(int vec[], int size) {
   int j;
   for (int i = 0; i < size; i++) {
     j = random_int(0, size - 1);

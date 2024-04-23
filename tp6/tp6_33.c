@@ -9,10 +9,12 @@
 #define ALPHABET_LENGTH ('Z' - 'A')
 
 // Shuffle an array in place
-void shuffle(char *vec, int size);
+void shuffle_char(char *vec, int size);
 
 void create_cipher(char *cipher);
+
 void encode(const char *msg, const char *cipher, char *out);
+
 void decode(const char *msg, const char *cipher, char *out);
 
 int main(void) {
@@ -42,7 +44,7 @@ int main(void) {
   return 0;
 }
 
-void shuffle(char *vec, int size) {
+void shuffle_char(char *vec, int size) {
   int j;
   for (int i = 0; i < size; i++) {
     j = random_int(0, size - 1);
@@ -56,7 +58,7 @@ void create_cipher(char *cipher) {
   for (int i = 0; i <= ALPHABET_LENGTH; i++) {
     cipher[i] = i + 'A';
   }
-  shuffle(cipher, ALPHABET_LENGTH);
+  shuffle_char(cipher, ALPHABET_LENGTH);
 }
 
 void encode(const char *msg, const char *cipher, char *out) {
