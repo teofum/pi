@@ -7,15 +7,13 @@ echo "# Auto generated CMakeLists.txt" > CMakeLists.txt
 while read line; do
   echo $line >> CMakeLists.txt
 done < CMakeLists.template.txt
+echo "" >> CMakeLists.txt
 
 for dir in */; do
   dir=${dir%*/}
 
   # Iterate each directory not in exclude_dirs
   if [[ ! " ${exclude_dirs[*]} " =~ [[:space:]]${dir}[[:space:]] ]]; then
-    echo "" >> CMakeLists.txt
-    echo "# $dir/" >> CMakeLists.txt
-
     for file in $dir/*.c; do
       # Auto-detect use of libs and add it to compile command
       out=$(basename -- "$file")
