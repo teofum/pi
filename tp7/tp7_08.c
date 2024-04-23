@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "random.h"
-#include "utils.h"
 
 #define COLS 5
 #define ROWS 3

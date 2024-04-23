@@ -24,6 +24,12 @@ for dir in */; do
         cat $src | grep "$lib_name.h" > /dev/null
         if [[ $? = 0 ]]; then
           src="$src lib/$lib_name.c"
+
+          # random depends on utils
+          # todo: handle dependencies between libs better
+          if [[ $lib_name = "random" ]]; then
+            src="$src lib/utils.c"
+          fi
         fi
       done
 
