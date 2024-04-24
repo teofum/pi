@@ -2,7 +2,8 @@
 
 # Remove executable line if it exists
 sed "/^add_executable($2/d" CMakeLists.txt > temp
-mv temp CMakeLists.txt
+sed "/^target_link_libraries($2/d" temp > CMakeLists.txt
+rm temp
 
 echo "add_executable($2 $1)" >> CMakeLists.txt
 
@@ -10,7 +11,7 @@ echo "add_executable($2 $1)" >> CMakeLists.txt
 for lib in lib/*.h; do
   lib_name=$(basename -- "$lib")
   lib_name=${lib_name%.*}
-  cat $file | grep "$lib_name.h" > /dev/null
+  cat $1 | grep "$lib_name.h" > /dev/null
   if [[ $? = 0  ]]; then
     echo "target_link_libraries($2 $lib_name)" >> CMakeLists.txt
   fi
