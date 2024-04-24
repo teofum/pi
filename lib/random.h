@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "utils.h"
-
 // Seed the RNG with current time
 void seed_with_timestamp(void);
 

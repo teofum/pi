@@ -1,4 +1,5 @@
 #include "random.h"
+#include "utils.h"
 
 void seed_with_timestamp(void) {
   srand((int) time(NULL));
