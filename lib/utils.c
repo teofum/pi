@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 
 #include "utils.h"
 
@@ -52,4 +53,13 @@ void sort(int v[], int size) {
 void flush_stdin(void) {
   int c;
   while ((c = getchar()) != EOF && c != '\n');
+}
+
+void *safe_malloc(size_t size) {
+  errno = 0;
+  void *ptr = malloc(size);
+  if (!ptr || errno != 0)
+    return NULL;
+
+  return ptr;
 }

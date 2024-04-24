@@ -20,4 +20,7 @@ void sort(int v[], int size);
 // Clear stdin buffer
 void flush_stdin(void);
 
+// Ensures NULL return on fail
+void *safe_malloc(size_t size);
+
 #endif
