@@ -21,9 +21,11 @@ vector vec_with_capacity(size_t el_size, size_t capacity);
 
 int vec_reserve(vector *v, size_t new_capacity);
 
-int vec_push(vector *v, void *el);
+int vec_push(vector *v, const void *el);
 
 int vec_pop(vector *v, void *el);
+
+int vec_get(const vector *v, size_t i, void *el);
 
 void vec_clear(vector *v);
 

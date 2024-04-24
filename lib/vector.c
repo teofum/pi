@@ -33,7 +33,7 @@ static int vec_grow(vector *v) {
   return vec_reserve(v, new_capacity);
 }
 
-int vec_push(vector *v, void *el) {
+int vec_push(vector *v, const void *el) {
   if (v->size == v->capacity) {
     if (!vec_grow(v)) return 0;
   }
@@ -49,6 +49,15 @@ int vec_pop(vector *v, void *el) {
 
   void *head = (void *) (((char *) v->data) + v->el_size * (v->size--));
   if (el != NULL) memcpy(el, head, v->el_size);
+
+  return 1;
+}
+
+int vec_get(const vector *v, size_t i, void *el) {
+  if (i >= v->size) return 0;
+
+  void *v_el = (void *) (((char *) v->data) + v->el_size * i);
+  if (el != NULL) memcpy(el, v_el, v->el_size);
 
   return 1;
 }
