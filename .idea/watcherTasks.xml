@@ -14,11 +14,31 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
-      <option name="program" value="$PROJECT_DIR$/update_cmakelists.sh" />
+      <option name="program" value="$PROJECT_DIR$/update_executable.sh" />
       <option name="runOnExternalChanges" value="true" />
       <option name="scopeName" value="Code files" />
       <option name="trackOnlyRoot" value="false" />
-      <option name="workingDir" value="$PROJECT_DIR$" />
+      <option name="workingDir" value="$ProjectFileDir$" />
+      <envs />
+    </TaskOptions>
+    <TaskOptions isEnabled="true">
+      <option name="arguments" value="$FilePathRelativeToProjectRoot$ $FileNameWithoutExtension$" />
+      <option name="checkSyntaxErrors" value="true" />
+      <option name="description" />
+      <option name="exitCodeBehavior" value="ERROR" />
+      <option name="fileExtension" value="cpp" />
+      <option name="immediateSync" value="true" />
+      <option name="name" value="Update CMakeLists on save (libraries)" />
+      <option name="output" value="" />
+      <option name="outputFilters">
+        <array />
+      </option>
+      <option name="outputFromStdout" value="false" />
+      <option name="program" value="$PROJECT_DIR$/update_library.sh" />
+      <option name="runOnExternalChanges" value="true" />
+      <option name="scopeName" value="Libraries" />
+      <option name="trackOnlyRoot" value="false" />
+      <option name="workingDir" value="$ProjectFileDir$" />
       <envs />
     </TaskOptions>
   </component>
