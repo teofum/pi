@@ -9,7 +9,7 @@ int *get_numbers(int *size);
 
 int contains(const int *arr, int size, int n);
 
-void push_int(int **arr, int *size, int *cap, int n);
+void push_int(int **arr, int *size, int n);
 
 int main(void) {
   int size;
@@ -26,14 +26,15 @@ int main(void) {
 
 int *get_numbers(int *size) {
   *size = 0;
-  int *arr = NULL, cap = 0, end = 0;
+  int *arr = NULL, end = 0;
 
   while (!end) {
     int n = get_int("Enter a number: ");
     end = contains(arr, *size, n);
-    if (!end) push_int(&arr, size, &cap, n);
+    if (!end) push_int(&arr, size, n);
   }
 
+  arr = realloc(arr, *size * sizeof(int));
   return arr;
 }
 
@@ -44,11 +45,9 @@ int contains(const int *arr, int size, int n) {
   return 0;
 }
 
-void push_int(int **arr, int *size, int *cap, int n) {
-  if (*size == *cap) {
-    *cap += BLOCK_SIZE;
-    *arr = realloc(*arr, *cap * sizeof(int));
-  }
+void push_int(int **arr, int *size, int n) {
+  if (*size % BLOCK_SIZE == 0)
+    *arr = realloc(*arr, (*size + BLOCK_SIZE) * sizeof(int));
 
   (*arr)[(*size)++] = n;
 }

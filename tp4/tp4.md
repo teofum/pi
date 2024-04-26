@@ -12,12 +12,14 @@ Si se reemplaza la línea por `b = a + PI + 1` queda `b = 4.14`.
 
 ### c.
 
-- `b = 13`, pues expande a `b = a+1 * a+1 * a+1` y como `*` tiene mayor precedencia que `+`, la cuenta que se hace es `b = a + (1 * a) + (1 * a) + 1`.
+- `b = 13`, pues expande a `b = a+1 * a+1 * a+1` y como `*` tiene mayor precedencia que `+`, la cuenta que se hace
+  es `b = a + (1 * a) + (1 * a) + 1`.
 - `c = 125`.
 
 ### d.
 
-- `b = 4 * 5 * 6 = 120` (los `++a` se pueden ejecutar en cualquier orden, pero al ser una multiplicación es equivalente).
+- `b = 4 * 5 * 6 = 120` (los `++a` se pueden ejecutar en cualquier ordering, pero al ser una multiplicación es
+  equivalente).
 - `c = 6 * 7 * 8 = 336` (idem anterior, pero es postincremento).
 - `d = 6`.
 - `e = 4 * 5 * 6 = 120` (idem `b`).
@@ -25,7 +27,8 @@ Si se reemplaza la línea por `b = a + PI + 1` queda `b = 4.14`.
 
 ### e.
 
-No compila: el parámetro `z` de `DIVISION` debe ser un **lvalue** pues se le asigna un valor. Si reemplazamos `DIVISION(x, y, 0)` por `DIVISION(x, y, z)`:
+No compila: el parámetro `z` de `DIVISION` debe ser un **lvalue** pues se le asigna un valor. Si
+reemplazamos `DIVISION(x, y, 0)` por `DIVISION(x, y, z)`:
 
 - `a = 20`.
 - `b = 5`.
@@ -52,7 +55,9 @@ Ver `book/book_4.14.c`.
 #define MAX2(x, y, out) (out = ((x) > (y)) ? (x) : (y))
 ```
 
-Obesrvación: este estilo de macros con un parámetro de salida en general son muy mala forma a menos que sea evidentemente obvio lo que hacen. En este caso, sería mejor que la macro simplemente retorne el máximo y hacer la asignación por afuera:
+Obesrvación: este estilo de macros con un parámetro de salida en general son muy mala forma a menos que sea
+evidentemente obvio lo que hacen. En este caso, sería mejor que la macro simplemente retorne el máximo y hacer la
+asignación por afuera:
 
 ```c
 #define MAX2_BETTER(x, y) (((x) > (y)) ? (x) : (y))
@@ -140,7 +145,8 @@ int suma(int n) {
 }
 ```
 
-Observación 1: el `else` es redundante; como la rama del `if` sale de la función, la ejecución sólo continúa si no se toma ese branch. Entonces, se puede escribir de modo equivalente
+Observación 1: el `else` es redundante; como la rama del `if` sale de la función, la ejecución sólo continúa si no se
+toma ese branch. Entonces, se puede escribir de modo equivalente
 
 ```c
 int suma(int n) {
@@ -151,9 +157,12 @@ int suma(int n) {
 }
 ```
 
-Observación 2: este patrón se llama _early return_ y tiene gran utilidad, pero es considerado muy mala práctica no tener un return "default" al final de la función, ya que hace más fácil introducir bugs.
+Observación 2: este patrón se llama _early return_ y tiene gran utilidad, pero es considerado muy mala práctica no tener
+un return "default" al final de la función, ya que hace más fácil introducir bugs.
 
-El uso más común de _early return_ es tener un camino normal o "feliz" para la función que llega hasta el return final, y usar early return si ocurre un error que impide seguir la ejecución, o llegamos a un resultado que hace redundante el resto de la función.
+El uso más común de _early return_ es tener un camino normal o "feliz" para la función que llega hasta el return final,
+y usar early return si ocurre un error que impide seguir la ejecución, o llegamos a un resultado que hace redundante el
+resto de la función.
 
 Por ejemplo, consideremos una función que encuentra las raíces de una cuadrática:
 
@@ -178,11 +187,13 @@ int quadratic_roots(
 }
 ```
 
-Podemos ver que si el discriminante es igual a 0, podemos devolver 0 directamente y ahorrarnos el resto de las cuentas, ya que la ecuación no tiene raíces.
+Podemos ver que si el discriminante es igual a 0, podemos devolver 0 directamente y ahorrarnos el resto de las cuentas,
+ya que la ecuación no tiene raíces.
 
 ### d.
 
-`a` contiene basura. Solución: inicializar la variable. Buena práctica: _siempre_ inicializar las variables en la misma declaración (excepción: variables que sólo se asignan dentro de un loop/condicional).
+`a` contiene basura. Solución: inicializar la variable. Buena práctica: _siempre_ inicializar las variables en la misma
+declaración (excepción: variables que sólo se asignan dentro de un loop/condicional).
 
 ### e.
 
@@ -192,7 +203,8 @@ Solución: cambiar la línea por `putchar('\n')`.
 
 # 09.
 
-Problema: al testear hora y minutos por separado, no considera el caso que la hora sea menor y el minuto mayor. Por ejemplo:
+Problema: al testear hora y minutos por separado, no considera el caso que la hora sea menor y el minuto mayor. Por
+ejemplo:
 
 ```c
 
@@ -216,7 +228,8 @@ int llegaTemprano(const int hora, const int minutos) {
 # 10.
 
 - `aux` no está inicializada y contiente basura.
-- La función debe retornar el valor más chico `b`, no el mayor `a` (euclides indica `(a : b) = b si b div a; sino (b : a % b)`).
+- La función debe retornar el valor más chico `b`, no el mayor `a` (euclides
+  indica `(a : b) = b si b div a; sino (b : a % b)`).
 - Rompe si a < b, se soluciona swapeando las variables.
 
 Solución: ver `tp4_10.c`.
