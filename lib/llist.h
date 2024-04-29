@@ -16,11 +16,15 @@ int list_empty(llist l);
 
 llist list_new(list_t value);
 
+llist list_clone(llist l);
+
 llist from_array(list_t *arr, size_t size);
 
 list_t list_get(llist l, size_t i);
 
 llist list_delete(llist l);
+
+llist list_insert(llist l, list_t value);
 
 void list_free(llist l);
 

@@ -14,6 +14,11 @@ llist list_new(list_t value) {
   return head;
 }
 
+llist list_clone(llist l) {
+  if (list_empty(l)) return NULL;
+  return list_insert(list_clone(l->tail), l->elem);
+}
+
 llist from_array(list_t *arr, size_t size) {
   if (size == 0) return NULL;
 
@@ -36,7 +41,16 @@ llist list_delete(llist l) {
   return tail;
 }
 
+llist list_insert(llist l, list_t value) {
+  llist list = list_new(value);
+  list->tail = l;
+
+  return list;
+}
+
 void list_free(llist l) {
+  if (list_empty(l)) return;
+  
   if (l->tail != NULL) list_free(l->tail);
   free(l);
 }
