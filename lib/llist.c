@@ -50,8 +50,8 @@ llist list_insert(llist l, list_t value) {
 
 void list_free(llist l) {
   if (list_empty(l)) return;
-  
-  if (l->tail != NULL) list_free(l->tail);
+
+  list_free(l->tail);
   free(l);
 }
 
