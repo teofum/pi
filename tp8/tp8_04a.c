@@ -36,7 +36,7 @@ hand check_hand(card *hand);
 
 void print_hand(card *hand);
 
-void print_card_line(card card, uint line);
+void print_card_line(const card *card, uint line);
 
 int main(void) {
   seed_with_timestamp();
@@ -82,23 +82,23 @@ hand check_hand(card *hand) {
 void print_hand(card *hand) {
   for (int line = 0; line < 7; line++) {
     for (int i = 0; i < HAND_SIZE; i++) {
-      print_card_line(hand[i], line);
+      print_card_line(&hand[i], line);
     }
     putchar('\n');
   }
 }
 
 // The code here is an absolute mess but the cards look great!
-void print_card_line(card card, uint line) {
+void print_card_line(const card *card, uint line) {
   // Colors!
-  if (card.suit == hearts || card.suit == diamonds) {
+  if (card->suit == hearts || card->suit == diamonds) {
     printf("\033[1;31m");
   } else {
     printf("\033[1m");
   }
 
-  char r = card.rank;
-  const char *s = suits[card.suit];
+  char r = card->rank;
+  const char *s = suits[card->suit];
   const char *corner = r >= 4 && r <= 10 ? s : " ";
   const char *middle = r == 2 || r == 3 || (r >= 8 && r <= 10) ? s : " ";
   const char *side = r >= 6 && r <= 10 ? s : " ";
