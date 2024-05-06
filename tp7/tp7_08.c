@@ -67,24 +67,26 @@ void gen_board(board_t board) {
 }
 
 int play(int numbers[N_MAX], board_t players[2]) {
-  int undrawn = N_MAX, winners = 0, first_line = -1;
+  int undrawn = N_MAX, winners = 0, first_line = 0;
 
   while (undrawn > 0 && !winners) {
     int drawn = draw_number(numbers, &undrawn);
     printf("\nDrew %d\n", drawn);
 
+    int set_first = first_line;
     for (int i = 0; i < 2; i++) {
       int complete = check_board(players[i], drawn);
       printf("Player %d:\n", i + 1);
       print_board(players[i]);
 
-      if (complete > 0 && first_line == -1) {
-        first_line = i;
+      if (complete > 0 && !first_line) {
+        set_first = 1;
         printf("Player %d completed the first line!\n", i + 1);
       }
 
       if (complete == ROWS) winners += (1 << i);
     }
+    first_line = set_first;
   }
 
   return winners;
