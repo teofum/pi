@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <string.h>
 
-void reverse(char *s, char *t);
+int reverse(char *s, char *t);
 
 int main(void) {
   char s[20] = {0};
@@ -30,10 +30,11 @@ int main(void) {
   return 0;
 }
 
-// slow and awful!
-void reverse(char *s, char *t) {
+int reverse(char *s, char *t) {
   if (s[0] != '\0') {
-    t[strlen(s) - 1] = s[0];
-    reverse(s + 1, t);
+    int tail_len = reverse(s + 1, t);
+    t[tail_len] = s[0];
+    return tail_len + 1;
   }
+  return 0;
 }
