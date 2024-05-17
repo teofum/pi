@@ -1,6 +1,8 @@
 #ifndef _llist_h
 #define _llist_h
 
+#include <stdio.h>
+
 typedef int list_t;
 
 #define DEF_LIST_TYPE(t) typedef t list_t;
@@ -29,5 +31,7 @@ llist list_insert(llist l, list_t value);
 void list_free(llist l);
 
 int check_elems(llist l, const list_t *v, size_t size);
+
+void print_list(llist l, const char *fmt);
 
 #endif

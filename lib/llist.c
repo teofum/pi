@@ -60,3 +60,13 @@ int check_elems(llist l, const list_t *v, size_t size) {
   return !list_empty(l) && l->elem == *v &&
          check_elems(l->tail, v + 1, size - 1);
 }
+
+void print_list(llist l, const char *fmt) {
+  if (list_empty(l)) {
+    printf("\n");
+  } else {
+    printf(fmt, l->elem);
+    printf(", ");
+    print_list(l->tail, fmt);
+  }
+}
