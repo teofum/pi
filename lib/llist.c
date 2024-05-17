@@ -66,7 +66,7 @@ void print_list(llist l, const char *fmt) {
     printf("\n");
   } else {
     printf(fmt, l->elem);
-    printf(", ");
+    printf(" ");
     print_list(l->tail, fmt);
   }
 }
