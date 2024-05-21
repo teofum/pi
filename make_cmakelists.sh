@@ -78,7 +78,7 @@ for dir in */; do
         adt_name=${adt_name%.*}
         cat $file | grep "$adt_name.h" > /dev/null
         if [[ $? = 0  ]]; then
-          echo "target_link_libraries($out $lib_name)" >> CMakeLists.txt
+          echo "target_link_libraries($out $adt_name)" >> CMakeLists.txt
         fi
       done
     done

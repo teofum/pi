@@ -1,3 +1,6 @@
+#ifndef _setADT_h
+#define _setADT_h
+
 typedef struct setCDT *setADT;
 
 typedef const char *set_elem_t;
@@ -23,3 +26,5 @@ int set_empty(setADT set);
 int set_insert(setADT set, set_elem_t elem);
 
 void set_remove(setADT set, set_elem_t elem);
+
+#endif
