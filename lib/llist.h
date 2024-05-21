@@ -28,6 +28,8 @@ llist list_delete(llist l);
 
 llist list_insert(llist l, list_t value);
 
+llist list_map(llist l, list_t (*f)(list_t));
+
 void list_free(llist l);
 
 int check_elems(llist l, const list_t *v, size_t size);

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "llist.h"
 
@@ -26,8 +27,7 @@ llist remove_if(llist list, predicate f) {
 
   if (f(list->elem)) {
     llist tail = list->tail;
-    list->tail = NULL;
-    list_free(list);
+    free(list);
     return remove_if(tail, f);
   }
 

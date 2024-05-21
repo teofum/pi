@@ -48,6 +48,14 @@ llist list_insert(llist l, list_t value) {
   return list;
 }
 
+llist list_map(llist l, list_t (*f)(list_t)) {
+  if (l == NULL) return NULL;
+
+  llist mapped = list_new(f(l->elem));
+  mapped->tail = list_map(l->tail, f);
+  return mapped;
+}
+
 void list_free(llist l) {
   if (list_empty(l)) return;
 
