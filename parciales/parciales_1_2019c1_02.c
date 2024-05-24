@@ -18,9 +18,9 @@ int main(void) {
     }
   }
 
-  printf("Text contains:\n");
+  printf("Text rank_contains:\n");
   printf(
-      "%d letters (%d lowercase, %d uppercase)\n", lower + upper, lower, upper
+    "%d letters (%d lowercase, %d uppercase)\n", lower + upper, lower, upper
   );
   printf("%d non-alphabetic characters\n", non_letter);
   printf("\nLetters in the text:\n");
