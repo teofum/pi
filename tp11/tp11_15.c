@@ -11,7 +11,7 @@ static int compare(mtf_elem_t e1, mtf_elem_t e2) {
 
 int
 main(void) {
-  moveToFrontADT p = mtf_new(compare);
+  moveToFrontADT p = mtf_new(sk_comp_fn);
 
   mtf_elem_t aux = {1, "uno"};
   assert(mtf_add(p, aux) == 1);
@@ -80,7 +80,7 @@ main(void) {
 
   // Insertamos miles de elementos
   int dim = 50000;
-  p = mtf_new(compare);
+  p = mtf_new(sk_comp_fn);
   for (int i = 1; i <= dim; i++) {
     mtf_elem_t aux = {i, "foo"};
     assert(mtf_add(p, aux));

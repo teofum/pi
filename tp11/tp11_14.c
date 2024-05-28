@@ -10,7 +10,7 @@ static int compare(list_elem_t e1, list_elem_t e2) {
 
 int
 main(void) {
-  listADT c = list_new(compare); // una lista, en este caso de int
+  listADT c = list_new(sk_comp_fn); // una lista, en este caso de int
   list_to_begin(c);
   assert(!list_has_next(c));
   assert(!list_has_next_asc(c));
